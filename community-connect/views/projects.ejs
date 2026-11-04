@@ -1,0 +1,79 @@
+
+<%- include("partials/header") %>
+
+<section class="page-hero">
+    <div class="container">
+        <span class="hero-label">MAKE AN IMPACT</span>
+
+        <h1>Discover Meaningful Service Projects</h1>
+
+        <p>
+            Find opportunities to volunteer, share your skills,
+            support local initiatives, and make a difference.
+        </p>
+    </div>
+</section>
+
+<section class="projects-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-label">VOLUNTEER OPPORTUNITIES</span>
+            <h2>Find a Project That Inspires You</h2>
+
+            <p>
+                Every act of service matters.
+                Explore our featured community projects.
+            </p>
+        </div>
+
+        <div class="project-grid">
+
+            <% projects.forEach((project) => { %>
+
+                <article class="project-card">
+
+                    <img
+                        src="<%= project.image %>"
+                        alt="<%= project.imageAlt %>"
+                        class="project-image"
+                    >
+
+                    <div class="project-content">
+
+                        <span class="project-category">
+                            <%= project.category %>
+                        </span>
+
+                        <h3><%= project.name %></h3>
+
+                        <p><%= project.description %></p>
+
+                        <div class="project-details">
+                            <p>
+                                <strong>Location:</strong>
+                                <%= project.location %>
+                            </p>
+
+                            <p>
+                                <strong>Activity:</strong>
+                                <%= project.activity %>
+                            </p>
+                        </div>
+
+                        <a href="/categories" class="card-link">
+                            Explore Category &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+</section>
+
+<%- include("partials/footer") %>

@@ -1,0 +1,71 @@
+<%- include("partials/header") %>
+
+<section class="page-hero">
+    <div class="container">
+        <span class="hero-label">OUR COMMUNITY PARTNERS</span>
+
+        <h1>Discover Organizations Making a Difference</h1>
+
+        <p>
+            Meet the organizations working to improve lives,
+            strengthen communities, and create lasting positive change.
+        </p>
+    </div>
+</section>
+
+<section class="organizations-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-label">OUR PARTNERS</span>
+            <h2>Organizations You Can Support</h2>
+
+            <p>
+                Find organizations whose missions inspire you
+                and discover ways to contribute.
+            </p>
+        </div>
+
+        <div class="organization-grid">
+
+            <% organizations.forEach((organization) => { %>
+
+                <article class="organization-card">
+
+                    <img
+                        src="<%= organization.image %>"
+                        alt="<%= organization.imageAlt %>"
+                        class="organization-image"
+                    >
+
+                    <div class="organization-content">
+
+                        <span class="organization-category">
+                            <%= organization.category %>
+                        </span>
+
+                        <h3><%= organization.name %></h3>
+
+                        <p><%= organization.description %></p>
+
+                        <div class="organization-mission">
+                            <strong>Our Mission</strong>
+                            <p><%= organization.mission %></p>
+                        </div>
+
+                        <a href="/projects" class="card-link">
+                            Explore Projects &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+</section>
+
+<%- include("partials/footer") %>

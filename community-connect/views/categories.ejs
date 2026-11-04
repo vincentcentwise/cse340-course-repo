@@ -1,0 +1,63 @@
+
+<%- include("partials/header") %>
+
+<section class="page-hero">
+    <div class="container">
+        <span class="hero-label">EXPLORE YOUR INTERESTS</span>
+
+        <h1>Explore Community Service Categories</h1>
+
+        <p>
+            Discover different ways to serve, support important causes,
+            and make a positive difference in your community.
+        </p>
+    </div>
+</section>
+
+<section class="categories-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="section-label">FIND YOUR PURPOSE</span>
+
+            <h2>Choose a Cause That Matters to You</h2>
+
+            <p>
+                Whether you care about the environment, education,
+                health, or helping others, there is an opportunity
+                for you to make an impact.
+            </p>
+        </div>
+
+        <div class="category-grid">
+
+            <% categories.forEach((category) => { %>
+
+                <article class="category-card">
+
+                    <div class="category-icon" aria-hidden="true">
+                        <%= category.icon %>
+                    </div>
+
+                    <div class="category-content">
+
+                        <h3><%= category.name %></h3>
+
+                        <p><%= category.description %></p>
+
+                        <a href="/projects" class="card-link">
+                            Explore Projects &rarr;
+                        </a>
+
+                    </div>
+
+                </article>
+
+            <% }) %>
+
+        </div>
+
+    </div>
+</section>
+
+<%- include("partials/footer") %>
