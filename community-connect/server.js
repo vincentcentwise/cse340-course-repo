@@ -1,10 +1,9 @@
-
-import express from "express";
+﻿import express from "express";
 import dotenv from "dotenv";
 
-import { getAllOrganizations } from "./src/models/organizations.js";
-import { getAllProjects } from "./src/models/projects.js";
-import { getAllCategories } from "./src/models/categories.js";
+import categoriesRoute from "./src/routes/categoriesRoute.js";
+import organizationsRoute from "./src/routes/organizationsRoute.js";
+import projectsRoute from "./src/routes/projectsRoute.js";
 
 // Load environment variables
 dotenv.config();
@@ -28,55 +27,34 @@ app.get("/", (req, res) => {
   });
 });
 
-// Organizations route
-app.get("/organizations", async (req, res, next) => {
-  try {
-    const organizations = await getAllOrganizations();
+// MVC listing routes
+app.use("/categories", categoriesRoute);
+app.use("/organizations", organizationsRoute);
+app.use("/projects", projectsRoute);
 
-    res.render("organizations", {
-      title: "Organizations | Community Connect",
-      organizations
-    });
-  } catch (error) {
-    next(error);
-  }
+// MVC detail routes
+app.use("/category", categoriesRoute);
+app.use("/organization", organizationsRoute);
+app.use("/project", projectsRoute);
+
+// Handle unmatched routes (404)
+app.use((req, res) => {
+  res.status(404).render("404", {
+    title: "Page Not Found | Community Connect"
+  });
 });
 
-// Service projects route
-app.get("/projects", async (req, res, next) => {
-  try {
-    const projects = await getAllProjects();
-
-    res.render("projects", {
-      title: "Service Projects | Community Connect",
-      projects
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// Categories route
-app.get("/categories", async (req, res, next) => {
-  try {
-    const categories = await getAllCategories();
-
-    res.render("categories", {
-      title: "Categories | Community Connect",
-      categories
-    });
-  } catch (error) {
-    next(error);
-  }
-});
-
-// Handle application errors
+// Handle application errors (500)
 app.use((error, req, res, next) => {
   console.error("Application error:", error);
 
-  res.status(500).send(
-    "Something went wrong while loading this page. Please try again later."
-  );
+  if (res.headersSent) {
+    return next(error);
+  }
+
+  res.status(500).render("500", {
+    title: "Server Error | Community Connect"
+  });
 });
 
 // Start the server

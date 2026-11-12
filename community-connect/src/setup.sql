@@ -34,8 +34,13 @@ CREATE TABLE IF NOT EXISTS projects (
     image_alt TEXT NOT NULL,
     description TEXT NOT NULL,
     location VARCHAR(200) NOT NULL,
-    activity TEXT NOT NULL
+    activity TEXT NOT NULL,
+    project_date DATE
 );
+
+-- Add the column to existing databases safely
+ALTER TABLE projects
+ADD COLUMN IF NOT EXISTS project_date DATE;
 
 -- 4. PROJECT-CATEGORIES JUNCTION TABLE
 CREATE TABLE IF NOT EXISTS project_categories (
@@ -53,25 +58,25 @@ VALUES
 (
     'Environmental',
     'environmental',
-    '🌳',
+    'ðŸŒ³',
     'Protect the environment through tree planting, community clean-ups, recycling, and conservation activities.'
 ),
 (
     'Educational',
     'educational',
-    '📚',
+    'ðŸ“š',
     'Support learning through tutoring, mentorship, digital literacy training, and access to educational resources.'
 ),
 (
     'Community Service',
     'community-service',
-    '🤝',
+    'ðŸ¤',
     'Strengthen communities by helping people in need, supporting local initiatives, and participating in volunteer activities.'
 ),
 (
     'Health and Wellness',
     'health-and-wellness',
-    '❤️',
+    'â¤ï¸',
     'Promote healthier communities through health awareness, wellness education, outreach, and support initiatives.'
 )
 ON CONFLICT (slug)
@@ -296,7 +301,59 @@ DO UPDATE SET
     location = EXCLUDED.location,
     activity = EXCLUDED.activity;
 
+-- Community Food Drive
+INSERT INTO projects (
+    name,
+    slug,
+    organization_id,
+    image,
+    image_alt,
+    description,
+    location,
+    activity
+)
+SELECT
+    'Community Food Drive',
+    'community-food-drive',
+    o.id,
+    '',
+    'Community volunteers organizing food donations',
+    'Join volunteers in collecting and distributing food supplies to families and individuals in need.',
+    'Local community centres',
+    'Food collection, sorting, and distribution'
+FROM organizations o
+WHERE o.slug = 'healthy-living-network'
+ON CONFLICT (slug)
+DO UPDATE SET
+    name = EXCLUDED.name,
+    organization_id = EXCLUDED.organization_id,
+    image = EXCLUDED.image,
+    image_alt = EXCLUDED.image_alt,
+    description = EXCLUDED.description,
+    location = EXCLUDED.location,
+    activity = EXCLUDED.activity;
+
 -- ==========================================
+-- ASSIGN SAMPLE PROJECT DATES
+-- These are demonstration dates and can be replaced with actual event dates.
+
+UPDATE projects
+SET project_date = CASE slug
+    WHEN 'community-tree-planting' THEN DATE '2026-11-20'
+    WHEN 'free-digital-literacy-training' THEN DATE '2026-11-27'
+    WHEN 'community-health-outreach' THEN DATE '2026-12-04'
+    WHEN 'neighborhood-clean-up-campaign' THEN DATE '2026-12-11'
+    WHEN 'community-food-drive' THEN DATE '2026-12-18'
+    ELSE project_date
+END
+WHERE slug IN (
+    'community-tree-planting',
+    'free-digital-literacy-training',
+    'community-health-outreach',
+    'neighborhood-clean-up-campaign',
+    'community-food-drive'
+);
+
 -- ASSIGN PROJECT CATEGORIES
 -- ==========================================
 
@@ -344,3 +401,14 @@ CROSS JOIN categories c
 WHERE p.slug = 'neighborhood-clean-up-campaign'
 AND c.slug = 'community-service'
 ON CONFLICT DO NOTHING;
+
+-- Community Food Drive -> Community Service
+INSERT INTO project_categories (project_id, category_id)
+SELECT p.id, c.id
+FROM projects p
+CROSS JOIN categories c
+WHERE p.slug = 'community-food-drive'
+AND c.slug = 'community-service'
+ON CONFLICT DO NOTHING;
+
+

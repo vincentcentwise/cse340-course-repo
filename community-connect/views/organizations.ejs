@@ -1,4 +1,4 @@
-<%- include("partials/header") %>
+﻿<%- include("partials/header") %>
 
 <section class="page-hero">
     <div class="container">
@@ -44,7 +44,11 @@
                             <%= organization.category %>
                         </span>
 
-                        <h3><%= organization.name %></h3>
+                        <h3>
+                            <a href="/organization/<%= organization.id %>">
+                                <%= organization.name %>
+                            </a>
+                        </h3>
 
                         <p><%= organization.description %></p>
 
@@ -53,8 +57,11 @@
                             <p><%= organization.mission %></p>
                         </div>
 
-                        <a href="/projects" class="card-link">
-                            Explore Projects &rarr;
+                        <a
+                            href="/organization/<%= organization.id %>"
+                            class="card-link"
+                        >
+                            View Organization &rarr;
                         </a>
 
                     </div>

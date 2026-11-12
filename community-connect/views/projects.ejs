@@ -1,5 +1,4 @@
-
-<%- include("partials/header") %>
+﻿<%- include("partials/header") %>
 
 <section class="page-hero">
     <div class="container">
@@ -33,11 +32,13 @@
 
                 <article class="project-card">
 
-                    <img
-                        src="<%= project.image %>"
-                        alt="<%= project.imageAlt %>"
-                        class="project-image"
-                    >
+                    <% if (project.image) { %>
+                        <img
+                            src="<%= project.image %>"
+                            alt="<%= project.imageAlt || project.name %>"
+                            class="project-image"
+                        >
+                    <% } %>
 
                     <div class="project-content">
 
@@ -45,11 +46,35 @@
                             <%= project.category %>
                         </span>
 
-                        <h3><%= project.name %></h3>
+                        <h3>
+                            <a href="/project/<%= project.id %>">
+                                <%= project.name %>
+                            </a>
+                        </h3>
 
                         <p><%= project.description %></p>
 
                         <div class="project-details">
+                            <p>
+                                <strong>Organization:</strong>
+                                <a href="/organization/<%= project.organizationId %>">
+                                    <%= project.organizationName %>
+                                </a>
+                            </p>
+
+                            <p>
+                                <strong>Project Date:</strong>
+                                <% if (project.projectDate) { %>
+                                    <%= new Date(project.projectDate + "T00:00:00").toLocaleDateString("en-GB", {
+                                        day: "numeric",
+                                        month: "long",
+                                        year: "numeric"
+                                    }) %>
+                                <% } else { %>
+                                    Date to be announced
+                                <% } %>
+                            </p>
+
                             <p>
                                 <strong>Location:</strong>
                                 <%= project.location %>
@@ -61,8 +86,11 @@
                             </p>
                         </div>
 
-                        <a href="/categories" class="card-link">
-                            Explore Category &rarr;
+                        <a
+                            href="/project/<%= project.id %>"
+                            class="card-link"
+                        >
+                            View Project &rarr;
                         </a>
 
                     </div>
