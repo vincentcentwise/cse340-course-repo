@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -32,3 +32,19 @@
     </header>
 
     <main>
+
+        <% if (successMessages && successMessages.length > 0) { %>
+            <div class="flash-message flash-success" role="status" aria-live="polite">
+                <% successMessages.forEach((message) => { %>
+                    <p><%= message %></p>
+                <% }) %>
+            </div>
+        <% } %>
+
+        <% if (errorMessages && errorMessages.length > 0) { %>
+            <div class="flash-message flash-error" role="alert" aria-live="assertive">
+                <% errorMessages.forEach((message) => { %>
+                    <p><%= message %></p>
+                <% }) %>
+            </div>
+        <% } %>

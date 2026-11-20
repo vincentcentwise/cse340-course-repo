@@ -1,0 +1,93 @@
+﻿<%- include("partials/header", { title }) %>
+
+<section class="page-hero">
+    <div class="container">
+        <p class="section-label">Community Organization</p>
+        <h1><%= organization.name %></h1>
+        <p><%= organization.description %></p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+
+        <% if (organization.image) { %>
+            <img
+                src="<%= organization.image %>"
+                alt="<%= organization.imageAlt || organization.name %>"
+                class="organization-image"
+            >
+        <% } %>
+
+        <div class="organization-content">
+            <h2>About This Organization</h2>
+            <p><%= organization.description %></p>
+
+            <h3>Our Mission</h3>
+            <p><%= organization.mission %></p>
+
+            <p class="organization-category">
+                <strong>Category:</strong>
+                <a href="/category/<%= organization.categoryId %>">
+                    <%= organization.category %>
+                </a>
+            </p>
+        </div>
+
+        <div class="section-heading">
+            <h2>Service Projects</h2>
+            <p>Explore the projects organized by <%= organization.name %>.</p>
+        </div>
+
+        <% if (projects.length > 0) { %>
+            <div class="project-grid">
+                <% projects.forEach(project => { %>
+                    <article class="project-card">
+                        <% if (project.image) { %>
+                            <img
+                                src="<%= project.image %>"
+                                alt="<%= project.imageAlt || project.name %>"
+                                class="project-image"
+                            >
+                        <% } %>
+
+                        <div class="project-content">
+                            <h3>
+                                <a href="/project/<%= project.id %>">
+                                    <%= project.name %>
+                                </a>
+                            </h3>
+
+                            <p><%= project.description %></p>
+
+                            <p class="project-category">
+                                <strong>Category:</strong>
+                                <%= project.category %>
+                            </p>
+
+                            <p class="project-details">
+                                <strong>Location:</strong>
+                                <%= project.location %>
+                            </p>
+
+                            <a
+                                href="/project/<%= project.id %>"
+                                class="card-link"
+                            >
+                                View Project
+                            </a>
+                        </div>
+                    </article>
+                <% }) %>
+            </div>
+        <% } else { %>
+            <p>This organization has no service projects available yet.</p>
+        <% } %>
+
+        <a href="/organizations" class="card-link">
+            Back to Organizations
+        </a>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

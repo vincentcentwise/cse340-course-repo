@@ -26,6 +26,12 @@
             </p>
         </div>
 
+        <div class="category-management-actions">
+            <a href="/new-organization" class="category-action-button">
+                + Create Organization
+            </a>
+        </div>
+
         <div class="organization-grid">
 
             <% organizations.forEach((organization) => { %>
@@ -63,6 +69,12 @@
                         >
                             View Organization &rarr;
                         </a>
+                        <a
+                            href="/edit-organization/<%= organization.id %>"
+                            class="category-edit-link"
+                        >
+                            Edit Organization
+                        </a>
 
                     </div>
 
@@ -76,3 +88,4 @@
 </section>
 
 <%- include("partials/footer") %>
+

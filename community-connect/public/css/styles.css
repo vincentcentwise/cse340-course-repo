@@ -671,3 +671,533 @@ a:focus-visible {
     background: #d1ebe6;
     transform: translateY(-2px);
 }
+
+/* =========================================
+   CATEGORY MANAGEMENT AND FORM STYLES
+========================================= */
+
+.category-management-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 28px;
+}
+
+.category-action-button,
+.form-submit-button,
+.form-cancel-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 6px;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.category-action-button,
+.form-submit-button {
+    background: #176b50;
+    color: #ffffff;
+}
+
+.category-action-button:hover,
+.form-submit-button:hover {
+    background: #10513c;
+    transform: translateY(-2px);
+}
+
+.category-edit-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #176b50;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.category-form-section {
+    padding: 60px 0 80px;
+    background: #f7f9f8;
+}
+
+.category-form-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 36px;
+    background: #ffffff;
+    border: 1px solid #e4eae6;
+    border-radius: 12px;
+    box-shadow: 0 8px 28px rgba(20, 50, 35, 0.07);
+}
+
+.category-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 28px;
+}
+
+.category-form label {
+    color: #243b31;
+    font-weight: 700;
+}
+
+.category-form input {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #bdcbc2;
+    border-radius: 6px;
+    color: #243b31;
+    background: #ffffff;
+    font: inherit;
+}
+
+.category-form input:focus {
+    outline: 3px solid rgba(23, 107, 80, 0.18);
+    border-color: #176b50;
+}
+
+.category-form small {
+    color: #5d6c63;
+    font-size: 0.9rem;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.form-cancel-button {
+    background: #edf1ee;
+    color: #243b31;
+}
+
+.form-cancel-button:hover {
+    background: #dfe7e1;
+}
+
+.form-error-summary {
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    border-left: 4px solid #b42318;
+    border-radius: 5px;
+    background: #fff1f0;
+    color: #842018;
+}
+
+.form-error-summary h3 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+}
+
+.form-error-summary ul {
+    margin: 0;
+    padding-left: 22px;
+}
+
+.flash-message {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 14px 20px;
+    border-radius: 6px;
+}
+
+.flash-message p {
+    margin: 4px 0;
+}
+
+.flash-success {
+    border-left: 4px solid #176b50;
+    background: #eaf6ef;
+    color: #145239;
+}
+
+.flash-error {
+    border-left: 4px solid #b42318;
+    background: #fff1f0;
+    color: #842018;
+}
+
+.category-action-button:focus-visible,
+.category-edit-link:focus-visible,
+.form-submit-button:focus-visible,
+.form-cancel-button:focus-visible {
+    outline: 3px solid #e2a93b;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    .category-form-card {
+        padding: 24px 18px;
+    }
+
+    .category-management-actions {
+        justify-content: stretch;
+    }
+
+    .category-action-button {
+        width: 100%;
+    }
+
+    .form-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .form-submit-button,
+    .form-cancel-button {
+        width: 100%;
+    }
+}
+
+/* Organization management form */
+.organization-form-card {
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.organization-form-card .form-group {
+    margin-bottom: 22px;
+}
+
+.organization-form-card input,
+.organization-form-card select,
+.organization-form-card textarea {
+    display: block;
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background: #fff;
+    color: #1f2937;
+    font: inherit;
+    box-sizing: border-box;
+}
+
+.organization-form-card input:focus,
+.organization-form-card select:focus,
+.organization-form-card textarea:focus {
+    outline: 3px solid rgba(37, 99, 235, 0.18);
+    border-color: #2563eb;
+}
+
+.organization-form-card textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.organization-form-card small {
+    display: block;
+    margin-top: 7px;
+    color: #64748b;
+}
+
+.organization-form-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+
+
+/* =====================================================
+   PROJECT MANAGEMENT FORM STYLES
+   ===================================================== */
+
+.form-container {
+    width: 100%;
+    max-width: 850px;
+    margin: 50px auto 70px;
+    padding: 38px;
+    background: #ffffff;
+    border: 1px solid #e4eae6;
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(20, 50, 35, 0.08);
+    box-sizing: border-box;
+}
+
+.form-container h1 {
+    margin: 0 0 30px;
+    color: #243b31;
+    font-size: 2rem;
+    line-height: 1.3;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-container .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin: 0;
+}
+
+.form-container .form-group label {
+    color: #243b31;
+    font-weight: 700;
+    font-size: 0.98rem;
+}
+
+.form-container input,
+.form-container select,
+.form-container textarea {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid #bdcbc2;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #243b31;
+    font: inherit;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-container textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    outline: none;
+    border-color: #176b50;
+    box-shadow: 0 0 0 3px rgba(23, 107, 80, 0.16);
+}
+
+.form-container input::placeholder {
+    color: #8a9890;
+}
+
+.form-container .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+    padding-top: 24px;
+    border-top: 1px solid #e7ede9;
+}
+
+.form-container .form-actions button {
+    min-height: 46px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 7px;
+    background: #176b50;
+    color: #ffffff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.form-container .form-actions button:hover {
+    background: #10513c;
+    transform: translateY(-1px);
+}
+
+.form-container .button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 12px 24px;
+    border-radius: 7px;
+    background: #edf1ee;
+    color: #243b31;
+    font-weight: 600;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
+
+.form-container .button-secondary:hover {
+    background: #dfe7e1;
+}
+
+.form-container .form-actions button:focus-visible,
+.form-container .button-secondary:focus-visible {
+    outline: 3px solid #e2a93b;
+    outline-offset: 3px;
+}
+
+.form-container .error-message {
+    margin-bottom: 24px;
+    padding: 16px 20px;
+    border-left: 4px solid #b42318;
+    border-radius: 7px;
+    background: #fff1f0;
+    color: #842018;
+}
+
+.form-container .error-message h2 {
+    margin: 0 0 10px;
+    font-size: 1.05rem;
+}
+
+.form-container .error-message ul {
+    margin: 0;
+    padding-left: 22px;
+    line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+    .form-container {
+        margin: 25px auto 40px;
+        padding: 24px 18px;
+        border-radius: 10px;
+    }
+
+    .form-container h1 {
+        font-size: 1.6rem;
+    }
+
+    .form-container .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-container .form-actions button,
+    .form-container .button-secondary {
+        width: 100%;
+    }
+}
+
+/* End Project Management Form Styles */
+/* PROJECT CATEGORY ASSIGNMENT STYLES */
+
+.category-assignment-form {
+    max-width: 850px;
+}
+
+.category-assignment-form .section-label {
+    margin-bottom: 10px;
+    color: #176b50;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.category-assignment-form h1 {
+    margin-bottom: 14px;
+}
+
+.category-assignment-form .form-description {
+    margin-bottom: 28px;
+    color: #52645a;
+    line-height: 1.7;
+}
+
+.category-assignment-form .category-checkbox-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 24px;
+    border: 1px solid #dce5df;
+    border-radius: 12px;
+    background: #f8faf8;
+}
+
+.category-assignment-form .category-checkbox-list legend {
+    padding: 0 10px;
+    color: #243b31;
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+.category-assignment-form .category-checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 58px;
+    margin: 0;
+    padding: 14px 16px;
+    border: 1px solid #dce5df;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #243b31;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.category-assignment-form .category-checkbox-option:hover {
+    border-color: #176b50;
+    background: #f0f7f3;
+}
+
+.category-assignment-form .category-checkbox-option input[type="checkbox"] {
+    display: inline-block;
+    flex: 0 0 19px;
+    width: 19px;
+    min-width: 19px;
+    max-width: 19px;
+    height: 19px;
+    min-height: 19px;
+    margin: 0;
+    padding: 0;
+    accent-color: #176b50;
+    cursor: pointer;
+}
+
+.category-assignment-form .category-checkbox-option span {
+    line-height: 1.5;
+}
+
+.category-assignment-form .category-checkbox-option:focus-within {
+    outline: 3px solid rgba(23, 107, 80, 0.2);
+    outline-offset: 2px;
+    border-color: #176b50;
+}
+
+.category-assignment-form .form-help {
+    margin: 16px 0 24px;
+    color: #68786f;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.category-assignment-form .empty-state {
+    padding: 28px;
+    border: 1px solid #dce5df;
+    border-radius: 10px;
+    background: #f8faf8;
+    text-align: center;
+}
+
+.category-assignment-form .empty-state p {
+    margin-bottom: 12px;
+    color: #52645a;
+    line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+    .category-assignment-form .category-checkbox-list {
+        grid-template-columns: 1fr;
+        padding: 18px 14px;
+    }
+
+    .category-assignment-form .category-checkbox-option {
+        min-height: 54px;
+    }
+}
+
+/* End Project Category Assignment Styles */

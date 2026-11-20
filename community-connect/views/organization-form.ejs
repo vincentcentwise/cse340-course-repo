@@ -1,0 +1,124 @@
+﻿<%- include("partials/header") %>
+
+<section class="page-hero">
+    <div class="container">
+        <span class="hero-label">ORGANIZATION MANAGEMENT</span>
+        <h1><%= heading %></h1>
+        <p>Create or update a community organization and its mission.</p>
+    </div>
+</section>
+
+<section class="category-form-section">
+    <div class="container">
+        <div class="category-form-card organization-form-card">
+
+            <div class="section-heading">
+                <span class="section-label">ORGANIZATION DETAILS</span>
+                <h2>Organization Information</h2>
+                <p>Complete all required fields.</p>
+            </div>
+
+            <% if (errors && errors.length > 0) { %>
+                <div class="form-error-summary" role="alert" aria-live="assertive">
+                    <h3>Please correct the following:</h3>
+                    <ul>
+                        <% errors.forEach((error) => { %>
+                            <li><%= error.msg %></li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %>
+
+            <form action="<%= formAction %>" method="POST" class="category-form">
+
+                <div class="form-group">
+                    <label for="name">Organization Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value="<%= organization.name || '' %>"
+                        maxlength="200"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="categoryId">Organization Category</label>
+                    <select id="categoryId" name="categoryId" required>
+                        <option value="">Select a category</option>
+                        <% categories.forEach((category) => { %>
+                            <option
+                                value="<%= category.id %>"
+                                <%= String(organization.categoryId || '') === String(category.id) ? 'selected' : '' %>
+                            >
+                                <%= category.name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Organization Image Path or URL</label>
+                    <input
+                        type="text"
+                        id="image"
+                        name="image"
+                        value="<%= organization.image || '' %>"
+                        maxlength="1000"
+                        required
+                        placeholder="/images/organizations/green-future.jpg"
+                    >
+                    <small>Use an existing image path or a valid image URL.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="imageAlt">Image Description (Alternative Text)</label>
+                    <input
+                        type="text"
+                        id="imageAlt"
+                        name="imageAlt"
+                        value="<%= organization.imageAlt || '' %>"
+                        maxlength="500"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Organization Description</label>
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="5"
+                        maxlength="5000"
+                        required
+                    ><%= organization.description || '' %></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="mission">Organization Mission</label>
+                    <textarea
+                        id="mission"
+                        name="mission"
+                        rows="4"
+                        maxlength="5000"
+                        required
+                    ><%= organization.mission || '' %></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="form-submit-button">
+                        <%= buttonText %>
+                    </button>
+
+                    <a href="/organizations" class="form-cancel-button">
+                        Cancel
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>
+
+<%- include("partials/footer") %>

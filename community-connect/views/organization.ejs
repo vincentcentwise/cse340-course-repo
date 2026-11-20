@@ -19,6 +19,15 @@
             >
         <% } %>
 
+        <div class="category-management-actions">
+            <a
+                href="/edit-organization/<%= organization.id %>"
+                class="category-action-button"
+            >
+                Edit Organization
+            </a>
+        </div>
+
         <div class="organization-content">
             <h2>About This Organization</h2>
             <p><%= organization.description %></p>
@@ -91,3 +100,4 @@
 </section>
 
 <%- include("partials/footer") %>
+

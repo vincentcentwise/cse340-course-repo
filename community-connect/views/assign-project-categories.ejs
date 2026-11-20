@@ -1,0 +1,95 @@
+<%- include("partials/header", { title }) %>
+
+<main class="container">
+    <section class="form-container category-assignment-form">
+
+        <p class="section-label">PROJECT CATEGORIES</p>
+
+        <h1>Assign Categories</h1>
+
+        <p class="form-description">
+            Select the categories that best describe
+            <strong><%= project.name %></strong>.
+            You can select more than one category.
+        </p>
+
+        <% if (categories.length > 0) { %>
+
+            <form action="/assign-categories/<%= project.id %>" method="POST">
+
+                <fieldset class="category-checkbox-list">
+
+                    <legend>Available Categories</legend>
+
+                    <% categories.forEach(category => { %>
+
+                        <label
+                            class="category-checkbox-option"
+                            for="category-<%= category.id %>"
+                        >
+
+                            <input
+                                type="checkbox"
+                                id="category-<%= category.id %>"
+                                name="categoryIds"
+                                value="<%= category.id %>"
+                                <%= selectedCategoryIds.includes(Number(category.id)) ? "checked" : "" %>
+                            >
+
+                            <span>
+                                <% if (category.icon) { %>
+                                    <%= category.icon %>
+                                <% } %>
+
+                                <%= category.name %>
+                            </span>
+
+                        </label>
+
+                    <% }) %>
+
+                </fieldset>
+
+                <p class="form-help">
+                    Leave all boxes unchecked if you want to remove
+                    every category assignment from this project.
+                </p>
+
+                <div class="form-actions">
+
+                    <button type="submit">
+                        Save Categories
+                    </button>
+
+                    <a
+                        href="/project/<%= project.id %>"
+                        class="button-secondary"
+                    >
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        <% } else { %>
+
+            <div class="empty-state">
+                <p>No categories are currently available.</p>
+
+                <p>
+                    Create a category before assigning categories
+                    to this project.
+                </p>
+
+                <a href="/new-category" class="button-secondary">
+                    Create Category
+                </a>
+            </div>
+
+        <% } %>
+
+    </section>
+</main>
+
+<%- include("partials/footer") %>

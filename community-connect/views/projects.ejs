@@ -1,4 +1,4 @@
-﻿<%- include("partials/header") %>
+<%- include("partials/header") %>
 
 <section class="page-hero">
     <div class="container">
@@ -25,6 +25,10 @@
                 Explore our featured community projects.
             </p>
         </div>
+
+        <p>
+            <a href="/new-project" class="card-link">Create Project</a>
+        </p>
 
         <div class="project-grid">
 
@@ -91,6 +95,13 @@
                             class="card-link"
                         >
                             View Project &rarr;
+                        </a>
+
+                        <a
+                            href="/edit-project/<%= project.id %>"
+                            class="card-link"
+                        >
+                            Edit Project
                         </a>
 
                     </div>

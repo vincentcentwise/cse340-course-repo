@@ -1,0 +1,123 @@
+<%- include("partials/header") %>
+
+<main class="container">
+    <section class="form-container">
+        <h1><%= heading %></h1>
+
+        <% if (errors && errors.length > 0) { %>
+            <div class="error-message" role="alert">
+                <h2>Please correct the following:</h2>
+                <ul>
+                    <% errors.forEach((error) => { %>
+                        <li><%= error.msg %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        <% } %>
+
+        <form action="<%= formAction %>" method="POST">
+            <div class="form-group">
+                <label for="name">Project Name</label>
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="<%= project.name || '' %>"
+                    maxlength="200"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="organizationId">Organization</label>
+                <select id="organizationId" name="organizationId" required>
+                    <option value="">Select an organization</option>
+                    <% organizations.forEach((organization) => { %>
+                        <option
+                            value="<%= organization.id %>"
+                            <%= String(project.organizationId || '') === String(organization.id) ? 'selected' : '' %>
+                        >
+                            <%= organization.name %>
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="image">Project Image Path</label>
+                <input
+                    type="text"
+                    id="image"
+                    name="image"
+                    value="<%= project.image || '' %>"
+                    maxlength="1000"
+                    required
+                    placeholder="/images/projects/example.jpg"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="imageAlt">Image Description (Alt Text)</label>
+                <input
+                    type="text"
+                    id="imageAlt"
+                    name="imageAlt"
+                    value="<%= project.imageAlt || '' %>"
+                    maxlength="500"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="description">Project Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    maxlength="5000"
+                    rows="5"
+                    required
+                ><%= project.description || '' %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value="<%= project.location || '' %>"
+                    maxlength="200"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="activity">Project Activity</label>
+                <textarea
+                    id="activity"
+                    name="activity"
+                    maxlength="5000"
+                    rows="4"
+                    required
+                ><%= project.activity || '' %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="projectDate">Project Date</label>
+                <input
+                    type="date"
+                    id="projectDate"
+                    name="projectDate"
+                    value="<%= project.projectDate || '' %>"
+                >
+            </div>
+
+            <div class="form-actions">
+                <button type="submit"><%= buttonText %></button>
+                <a href="/projects" class="button-secondary">Cancel</a>
+            </div>
+        </form>
+    </section>
+</main>
+
+<%- include("partials/footer") %>
